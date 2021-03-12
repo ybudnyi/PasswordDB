@@ -4,12 +4,14 @@ import shelve
 import pyperclip
 import Password_chk
 
+# Create Folder for db
 if not os.path.exists('D:\\Documents\\Passwords'):
     os.mkdir('D:\\Documents\\Passwords')
 os.chdir('D:\\Documents\\Passwords')
 db_pass = shelve.open('db')
 password_chk = pyperclip.paste()
 
+# Check your password with pwnedpasswords
 req_for_chk = input("Do you want to check your password\n-:")
 if req_for_chk.lower() == 'yes':
 
@@ -21,6 +23,7 @@ if req_for_chk.lower() == 'yes':
 print("You should use only:\n-save\n-copy\n-show\n for actions with your password\n---")
 
 
+# Print action key(save, copy, show. Or print exit to stop app
 def ask_for_pass():
     app_attr = input('Print action(key)')
     x = app_attr.split()
@@ -30,6 +33,7 @@ def ask_for_pass():
     return x
 
 
+# Put your passwords in DB
 def get_data(l):
     if l[0] == 'save':
         db_pass[l[1]] = password_chk
